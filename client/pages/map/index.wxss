@@ -1,0 +1,68 @@
+/* pages/map/index.wxss */
+
+.container {
+  min-height: 100vh;
+  background: url('http://oq8pu5sju.bkt.clouddn.com/bg2.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.t1 {
+  width: 626rpx;
+  height: 180rpx;
+  margin: 0 auto;
+  display: block;
+}
+
+
+#map {
+  width: 694rpx;
+  height: 694rpx;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+  margin-top: 20rpx;
+  border: 3rpx solid rgba(0, 0, 0, .3)
+}
+
+.tel {
+  width: 500rpx;
+  margin: 0 auto;
+  min-height: 0;
+  overflow: hidden;
+  text-align: center;
+  font-size: 24rpx;
+  color: #684c4b;
+  line-height: 50rpx;
+  z-index: 99999;
+  padding-bottom: 50rpx;
+}
+
+.tel_he {
+  width: 200rpx;
+  float: left;
+}
+
+.tel_she {
+  width: 200rpx;
+  float: right;
+}
+
+.call {
+  width: 80rpx;
+  height: 80rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.call image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 20rpx;
+  line-height: 25rpx;
+  padding-bottom: 20rpx;
+  color: #684c4b;
+}

@@ -1,0 +1,10 @@
+<view class="container">
+  <view class="swiper">
+    <swiper indicator-dots="false" autoplay="false" interval="5000" duration="1000">
+        <swiper-item wx:for="{{slideList}}" wx:key="{{index}}">
+            <image src="{{item}}" class="slide-image" mode="aspectFill"/>
+        </swiper-item>
+    </swiper>
+  </view>
+</view>
+

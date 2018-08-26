@@ -1,0 +1,60 @@
+/**index.wxss**/
+
+
+.swiper {
+  width: 750rpx;
+  height: 100vh;
+}
+.swiper swiper{
+  width: 750rpx;
+  height: 100vh;
+}
+.swiper swiper-item{
+  width: 750rpx;
+  height: 100vh;
+}
+.swiper image{
+  width: 750rpx;
+  height: 100vh;
+}
+
+.background_music{
+  position: fixed;
+  top: 20rpx;
+  right: 10rpx;
+  z-index: 10001;
+  width: 100rpx;
+}
+.musicImg{
+  width: 80rpx;
+  height: 80rpx;
+}
+.music_icon{
+  animation:musicRotate 3s linear infinite;
+}
+.music_play{
+  width:28rpx;
+  height: 80rpx;
+  margin-left:-5px;
+  transform-origin: top;
+  -webkit-transform:rotate(20deg)
+}
+.playImg{
+  animation:musicStop 1s linear forwards ;
+}
+.pauseImg{
+  animation:musicStart 1s linear forwards ;
+}
+@-webkit-keyframes musicRotate{
+from{-webkit-transform:rotate(0deg);}
+to{-webkit-transform:rotate(360deg);}
+}
+@-webkit-keyframes musicStop{
+from{-webkit-transform:rotate(20deg);}
+to{-webkit-transform:rotate(0deg);}
+}
+@-webkit-keyframes musicStart{
+from{-webkit-transform:rotate(0deg);}
+to{-webkit-transform:rotate(20deg);}
+}
+.music_stop{width:4em;display:none;}

@@ -1,0 +1,36 @@
+<!--pages/invitation/index.wxml-->
+<view wx:if="{{music_url}}">
+  <view wx:if="{{isPlayingMusic}}">
+    <view class="background_music" bindtap="play">
+      <image src="/images/music_icon.png" class="musicImg music_icon"/>
+      <image src="/images/music_play.png" class="music_play pauseImg" />
+    </view>
+  </view>
+  <view wx:else>
+    <view class="background_music" bindtap="play">
+      <image src="/images/music_icon.png" class="musicImg"/>
+      <image src="/images/music_play.png" class="music_play playImg" />
+    </view>
+  </view>
+</view>
+<view class="container">
+    <image src='/images/inv.png' class='inv'></image>
+    <image src='{{mainInfo.cover}}' class='cover' mode='aspectFill'></image>
+    <view class='datetime' animation="{{animationData}}">
+        <view class='box'>
+            <view class="name css13610f7ae66601">
+                <span class="fl">{{mainInfo.he}}</span>
+                <span class="and">&</span>
+                <span class="fr ">{{mainInfo.she}}</span>
+            </view>
+            <view class="date css13610f7ae66601">
+                <view>谨定于 {{mainInfo.date}}</view>
+                <view>农历 {{mainInfo.lunar}} 举办婚礼</view>
+                <view>席设: {{mainInfo.hotel}}</view>
+                <view>地址：{{mainInfo.address}}</view>
+                <view>恭请您的光临</view>
+            </view>
+            <image class="we" src='/images/we.png'></image>
+        </view>
+    </view>
+</view>

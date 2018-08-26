@@ -1,0 +1,54 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/photos/index",
+        "pages/map/index",
+        "pages/bless/index",
+        "pages/chat/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Just Married",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": false
+    },
+    "tabBar": {
+        "color": "#6C6C6C",
+        "selectedColor": "#E8515B",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "images/1-1.png",
+                "selectedIconPath": "images/1-2.png",
+                "text": "邀请函"
+            },
+            {
+                "pagePath": "pages/photos/index",
+                "iconPath": "images/2-1.png",
+                "selectedIconPath": "images/2-2.png",
+                "text": "甜蜜相册"
+            },
+            {
+                "pagePath": "pages/map/index",
+                "iconPath": "images/3-1.png",
+                "selectedIconPath": "images/3-2.png",
+                "text": "酒店导航"
+            },
+            {
+                "pagePath": "pages/bless/index",
+                "iconPath": "images/4-1.png",
+                "selectedIconPath": "images/4-2.png",
+                "text": "好友祝福"
+            },
+            {
+                "pagePath": "pages/chat/index",
+                "iconPath": "images/5-1.png",
+                "selectedIconPath": "images/5-2.png",
+                "text": "留言评论"
+            }
+        ]
+    }
+}
