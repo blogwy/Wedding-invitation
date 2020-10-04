@@ -1,0 +1,19 @@
+<!--pages/bless/index.wxml-->
+<view class="container">
+  <view class="bless_img">
+    <image src="/images/mail.png"/>
+  </view>
+  <view class="title" wx:if="{{zanNum > 0}}">已收到 {{zanNum}} 位好友的祝福</view>
+  <view class="title" wx:if="{{zanNum == 0}}"> 点击下方按钮可送上祝福 </view>
+  <view class="friends">
+    <view class="face" wx:for="{{zanLog}}" wx:key="user">
+      <image src="{{item.avatarUrl}}" />
+    </view>
+    <view class="face">
+      <image src="../../images/more.svg" bindtap="getBless"></image>
+    </view>
+  </view>
+  <view class="btn_zone">
+    <button type="warn" disabled="{{isBless}}" loading="{{loading}}" open-type="getUserInfo"  bindgetuserinfo="bindgetuserinfo">{{ isBless ? '已祝福' : '送上祝福' }}</button>  
+  </view>
+</view>

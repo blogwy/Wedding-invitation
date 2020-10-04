@@ -1,0 +1,24 @@
+
+<!-- pages/map/index.wxml -->
+<view class="container">
+  <image src='/images/t1.png' class='t1'></image>
+  <view class="map">
+    <map id="map" longitude="{{mainInfo.longitude}}" latitude="{{mainInfo.latitude}}" scale="18" markers="{{markers}}" bindmarkertap="markertap" show-location="{{showLocation}}" ></map>
+  </view>
+  <view class="tel">
+    <view class="tel_he" wx:if="{{mainInfo.boyPhone}}">
+      <view class="call" bindtap="callhe">
+        <image src="/images/he.png" width="100%" />
+      </view>
+      呼叫新郎
+    </view>
+    <view class="tel_she" wx:if="{{mainInfo.girlPhone}}">
+      <view class="call" bindtap="callshe">
+        <image src="/images/she.png" width="100%" />
+      </view>
+      呼叫新娘
+    </view>
+  </view>
+  <view class='copyright' wx:if="{{mainInfo.girlPhone}}">MADE WITH ❤ BY  {{mainInfo.boy}} & {{mainInfo.girl}}</view>
+  <!-- <view class='copyright'>©2020 https://blog.wangyu.link</view> -->
+</view>

@@ -1,0 +1,35 @@
+<!--pages/chat/index.wxml-->
+<view class="container">
+    <view wx:if="{{chatNum > 0}}">
+        <view class="chat_list" wx:for="{{chatList}}" wx:key="user">
+            <view class="chat_face">
+                <image src="{{item.avatarUrl}}" />
+            </view>
+            <view class="chat_words">
+                <view class="chat_meta">
+                    <text class="chat_user">{{item.nickName}}</text>
+                    <text class="chat_date">{{item.create_time}}</text>
+                </view>
+                <view>{{item.words}}</view>
+            </view>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="befirst">
+            <image src="https://wong-1251253615.cos.ap-shanghai.myqcloud.com/lovemail.gif" />
+        </view>
+    </view>
+    <view class="send_msg">
+        <view>
+            <input placeholder="在这里输入您要说的话" value="{{inputValue}}" class="send_ipt" bindinput="bindKeyInput" />
+            <button
+                type="primary"
+                loading="{{loading}}"
+                class="send_btn"
+                open-type="getUserInfo"
+                bindgetuserinfo="bindgetuserinfo">
+                发布
+            </button>
+        </view>
+    </view>
+</view>
