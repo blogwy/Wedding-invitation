@@ -31,6 +31,6 @@ Page({
     // 页面关闭
   },
   onShareAppMessage: function (res) {
-    app.shareHandle();
+    
   }
 })

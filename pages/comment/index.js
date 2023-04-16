@@ -7,7 +7,7 @@ Page({
      */
     data: {
       chatNum: 0,
-      inputValue: '',
+      words: '',
       chatList: [],
       limit: 9,
       skip: 0,
@@ -29,8 +29,8 @@ Page({
         let chatNum = mainInfo.data.length + this.data.chatNum
         let chatList = this.data.chatList.concat(mainInfo.data)
         this.setData({
-          chatNum: chatNum,
-          chatList: chatList
+          chatNum,
+          chatList
         })
         const skip = mainInfo.data.length + this.data.skip
         if (this.data.limit === 9) {
@@ -48,40 +48,56 @@ Page({
         }
       }
     },
-    bindgetuserinfo (e) {
-      console.log(e.detail.userInfo)
-      this.loading = true
-      wx.cloud.callFunction({
-        // 云函数名称
-        name: 'get_openId'
+    async sendComment (e) {
+      this.setData({
+        loading: true
       })
-        .then(res => {
-          let sendData = {
-            nickName: e.detail.userInfo.nickName,
-            avatarUrl: e.detail.userInfo.avatarUrl,
-            words: this.data.inputValue,
-            openId: res.result.openid,
-            create_time: utils.formatTime()
-          }
-          app.globalData.db.collection('comment').add({
-            data: sendData
+      try {
+        const res = await wx.cloud.callFunction({ name: 'get_openId' })
+        const user = await this.getUser(res.result.openid)
+        if (!user) {
+          wx.navigateTo({
+            url: `/pages/user/index?from=comment&openid=${res.result.openid}&words=${this.data.words}`,
           })
-            .then(async res => {
-              this.setData({
-                inputValue: ''
-              })
-              await this.getComment()
-              this.loading = false
-            })
-            .catch(err => {
-              console.log(err);
-              this.loading = false
-            })
+          return
+        }
+        let sendData = {
+          nickName: user.nickName,
+          avatarUrl: user.avatarUrl,
+          words: this.data.words,
+          openId: res.result.openid,
+          create_time: utils.formatTime()
+        }
+        await app.globalData.db.collection('comment').add({ data: sendData })
+        this.setData({
+          words: ''
         })
-        .catch(err => {
-          this.loading = false
-          console.log(err);
+        await this.getComment()
+      } catch (error) {
+        wx.showToast({
+          title: '未知错误',
+          icon: 'none',
+          duration: 2000
         })
+      }
+      this.setData({
+        loading: false
+      })
+    },
+    bindKeyInput (e) {
+      this.setData({
+        words: e.detail.value
+      })
+    },
+    async getUser (openId) {
+      const { data } = await app.globalData.db.collection('user').where({ openId }).get()
+      if (data.length) {
+        return {
+          nickName: data[0].nickName,
+          avatarUrl: data[0].avatarUrl
+        }
+      }
+      return false
     },
     /**
      * 生命周期函数--监听页面加载
@@ -132,11 +148,6 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function() {
-      app.shareHandle();
-    },
-    bindKeyInput: function(e) {
-        this.setData({
-            inputValue: e.detail.value
-        })
+      
     }
 })

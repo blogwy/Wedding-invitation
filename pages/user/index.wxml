@@ -1,0 +1,17 @@
+<view class="user">
+  <view>
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="avatar" src="{{avatarUrl}}"></image>
+    </button> 
+    <mp-form>
+      <mp-cells>
+        <mp-cell title="昵称">
+          <input type="nickname" class="weui-input" placeholder="请输入昵称" bindnicknamereview="onbindnicknamereview" bindblur="onbindblur" />
+        </mp-cell>
+      </mp-cells>
+    </mp-form>
+  </view>
+  <view>
+    <button type="primary" bindtap="submit" disabled="{{!(pass && nickName)}}">提交</button>
+  </view>
+</view>

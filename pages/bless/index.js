@@ -13,57 +13,64 @@ Page({
       count: 0,
       loading: false
     },
-    bindgetuserinfo (e) {
-      console.log(e.detail.userInfo);
-      this.loading = true
-      wx.cloud.callFunction({
-        // 云函数名称
-        name: 'get_openId'
+    async sendBless () {
+      console.log('sendBless');
+      this.setData({
+        loading: true
       })
-        .then(async res => {
-          console.log(res.result)
-          const obj = {
-            nickName: e.detail.userInfo.nickName,
-            avatarUrl: e.detail.userInfo.avatarUrl,
-            openId: res.result.openid
-          }
-          // 查询数据库
-          const status = await app.globalData.db.collection('bless').where({ openId: res.result.openid }).get()
-          if (!status.data.length) {
-            // 没有祝福过
-            app.globalData.db.collection('bless').add({
-              data: obj
-            })
-              .then(async res => {
-                console.log(res);
-                wx.showToast({
-                  title: '谢谢你的祝福',
-                  icon: 'none',
-                  duration: 2000
-                })
-                await this.getBless()
-                this.loading = false
-              })
-              .catch(err => {
-                console.log(err);
-                this.loading = false    
-              })
-          } else {
-            this.setData({
-              isBless: true
-            })
-            wx.showToast({
-              title: '您已经祝福过了',
-              icon: 'none',
-              duration: 2000
-            })
-            this.loading = false          
-          }
+      try {
+        const res = await wx.cloud.callFunction({ name: 'get_openId' })
+        console.log(res);
+        const user = await this.getUser(res.result.openid)
+        console.log(user);
+        if (!user) {
+          this.setData({
+            loading: false
+          })
+          wx.navigateTo({
+            url: `/pages/user/index?from=bless&openid=${res.result.openid}`,
+          })
+          return
+        }
+        const obj = {
+          nickName: user.nickName,
+          avatarUrl: user.avatarUrl,
+          openId: res.result.openid
+        }
+        // 查询数据库
+        const { data } = await app.globalData.db.collection('bless').where({ openId: res.result.openid }).get()
+        if (!data.length) {
+          // 没有祝福过
+          await app.globalData.db.collection('bless').add({ data: obj })
+          wx.showToast({
+            title: '谢谢你的祝福',
+            icon: 'none',
+            duration: 2000
+          })
+          await this.getBless()
+          this.setData({
+            isBless: true
+          })
+        } else {
+          this.setData({
+            isBless: true
+          })
+          wx.showToast({
+            title: '您已经祝福过了',
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      } catch (error) {
+        wx.showToast({
+          title: '未知错误',
+          icon: 'none',
+          duration: 2000
         })
-        .catch(err => {
-          console.log(err);
-          this.loading = false
-        })
+      }
+      this.setData({
+        loading: false
+      })    
     },
     async getBless () {
       const mainInfo = await app.globalData.db.collection('bless')
@@ -98,6 +105,16 @@ Page({
           })
         }
       }
+    },
+    async getUser (openId) {
+      const { data } = await app.globalData.db.collection('user').where({ openId }).get()
+      if (data.length) {
+        return {
+          nickName: data[0].nickName,
+          avatarUrl: data[0].avatarUrl
+        }
+      }
+      return false
     },
     /**
      * 生命周期函数--监听页面加载
@@ -149,6 +166,6 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function() {
-      app.shareHandle();
+      
     }
 })

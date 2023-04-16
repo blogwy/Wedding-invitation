@@ -14,6 +14,6 @@
     </view>
   </view>
   <view class="btn_zone">
-    <button type="warn" disabled="{{isBless}}" loading="{{loading}}" open-type="getUserInfo"  bindgetuserinfo="bindgetuserinfo">{{ isBless ? '已祝福' : '送上祝福' }}</button>  
+    <button class="bless-btn" disabled="{{isBless}}" loading="{{loading}}" bindtap="sendBless">{{ isBless ? '已祝福' : '送上祝福' }}</button>  
   </view>
 </view>

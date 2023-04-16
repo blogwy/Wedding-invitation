@@ -53,35 +53,45 @@ page {
 }
 
 .send_msg {
-    width: 700rpx;
-    padding: 25rpx;  
-    background-color: #fff;
-    min-height: 0;
-    overflow: hidden;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    border-top: 1px solid #f1f1f1;
-    border-bottom: 1px solid #f1f1f1;
-
+  box-sizing: border-box;
+  /* width: 100%; */
+  padding: 25rpx;  
+  background-color: #fff;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #f1f1f1;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  flex-direction: row;
+}
+.send_ipt_box{
+  width: 500rpx;
+}
+.send_btn_box{
+  box-sizing: border-box;
+  width: 200rpx;
+  padding-left: 25rpx;
 }
 .send_ipt {
-    width: 500rpx;
-    padding: 10rpx;
-    font-size: 30rpx;
-    height: 60rpx;
-    line-height: 60rpx;
-    float: left;
-    background-color: #f5f5f5;
-    border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10rpx;
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #f5f5f5;
+  border-radius: 5px;
 }
 .send_btn {
-    width: 150rpx;
-    height: 80rpx;
-    font-size: 36rpx;
-    line-height: 80rpx;
-    float: right;
-    background: #E8515B!important;
+  width: 175rpx !important;
+  box-sizing: border-box;
+  height: 60rpx;
+  font-size: 36rpx;
+  line-height: 60rpx;
+  background: #E8515B!important;
+  padding: 0px !important;
 }
 .send_btn::after{
   border: none;

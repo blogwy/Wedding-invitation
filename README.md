@@ -13,7 +13,7 @@
 
 2. 开通云开发(选择免费套餐即可)
 
-3. 新建四个集合，集合名分别是`bless` `photos` `comment` `invitation`
+3. 新建五个集合，集合名分别是`bless` `photos` `comment` `invitation` `user`
 
 4. 打开`sql`文件夹，按照集合名称导入数据
 
@@ -21,11 +21,11 @@
 
 ```javascript
 wx.cloud.init({
-  env: 'dev-1goaza5i509ecff5'
+  env: ''
 })
 ```
 
-6. 右键点击`functions`选择第三项`上传并部署（云端...）`
+6. 右键点击`functions`下面的`get_openId`选择第三项`上传并部署`
 
 7. 重新编译
 
@@ -69,6 +69,8 @@ wx.cloud.init({
 ## 可能遇到的问题
 
 * 如遇到小程序页面显示异常，请关闭`ES6转ES5功能`
+
+* 新用户第一次评论/祝福时候会跳转到填写用户信息页面[小程序用户头像昵称获取规则调整公告](https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01)
 
 
 

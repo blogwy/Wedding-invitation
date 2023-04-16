@@ -4,7 +4,11 @@
     "pages/photos/index",
     "pages/map/index",
     "pages/bless/index",
-    "pages/chat/index"
+    "pages/comment/index",
+    "pages/user/index"
+  ],
+  "requiredBackgroundModes": [
+    "audio"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,7 +22,8 @@
     "selectedColor": "#E8515B",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "iconPath": "images/1-1.png",
         "selectedIconPath": "images/1-2.png",
@@ -43,12 +48,16 @@
         "text": "好友祝福"
       },
       {
-        "pagePath": "pages/chat/index",
+        "pagePath": "pages/comment/index",
         "iconPath": "images/5-1.png",
         "selectedIconPath": "images/5-2.png",
         "text": "留言评论"
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "style": "v2"
 }

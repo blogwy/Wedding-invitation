@@ -52,7 +52,12 @@
   color: #ccc;
 }
 .bless-btn{
-  background: #E8515B!important;
+  background: #E8515B !important;
+  color: #ffffff !important;
+}
+.bless-btn[disabled]:not([type]) {
+  background-color: #EC8B89 !important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 .bless-btn::after{
   border: none;
