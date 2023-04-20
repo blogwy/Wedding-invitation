@@ -20,7 +20,7 @@
 }
 .datetime {
     position: fixed;
-    bottom: 50rpx;
+    bottom: 20rpx;
     width: 620rpx;
     padding: 15rpx;
     left: 50rpx;

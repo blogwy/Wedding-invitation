@@ -1,6 +1,6 @@
 # Wedding-invitation
 
-婚礼邀请函微信小程序，前端+后端+数据库 **小程序前端是fork的 [OnceLove](https://github.com/donghaikun/OnceLove)** 现在已经迁移到云开发，不需要域名和服务器。我一个单身🐶，为啥要写这种小程序？
+婚礼邀请函微信小程序，前端+微信云开发，不需要域名和服务器。
 
 ![1](./screenshots/awsl.png)
 ## 前提
@@ -13,11 +13,11 @@
 
 2. 开通云开发(选择免费套餐即可)
 
-3. 新建五个集合，集合名分别是`bless` `photos` `comment` `invitation` `user`
+3. 新建四个集合，集合名分别是`bless` `photos` `comment` `invitation` `user`
 
 4. 打开`sql`文件夹，按照集合名称导入数据
 
-5. 修改根目录`app.js`文件里面的env字段为你的云开发环境id
+5. 修改根目录`app.js`文件里面的`env`字段为你的云开发环境id
 
 ```javascript
 wx.cloud.init({
@@ -25,15 +25,19 @@ wx.cloud.init({
 })
 ```
 
-6. 右键点击`functions`下面的`get_openId`选择第三项`上传并部署`
+6. 右键点击`functions`选择当前云开发环境，在`get_openId`右键选第三项`上传并部署：云端安装依赖`
 
 7. 重新编译
 
 ## 数据格式说明
 
-1. `bless` `comment`数据表分别是`好友祝福`和`留言评论`页面的数据
+1. `bless`是`好友祝福`页面的数据
+
+1. `comment`数据表是`留言评论`页面的数据
 
 2. `photos`数据表是`甜蜜相册`页面数据
+
+4. `user`表是用户数据
 
 3. `invitation` 数据表(只有一条数据)是基本信息，此数据用于小程序的`首页`和`地图`页面，数据格式如下
 
@@ -66,11 +70,17 @@ wx.cloud.init({
 }
 ```
 
-## 可能遇到的问题
+## 注意⚠️⚠️⚠️
 
 * 如遇到小程序页面显示异常，请关闭`ES6转ES5功能`
 
-* 新用户第一次评论/祝福时候会跳转到填写用户信息页面[小程序用户头像昵称获取规则调整公告](https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01)
+* 由于[小程序用户头像昵称获取规则调整](https://developers.weixin.qq.com/community/develop/doc/00022c683e8a80b29bed2142b56c01)现在已经不能通过调用`wx.getUserProfile`直接获取用户昵称和头像，所以`Wedding-invitation`按照官方要求修改，用户在首次使用`祝福`和`评论`功能时会跳转到填写用户昵称和头像的页面，引导用户填写内容。
+
+* 需要把云开发的`数据库`所有表 和 `存储` 修改为自定义安全规则。规则如下：
+
+![xxx](./screenshots/xxx.png)
+
+* 如果你是个人小程序`留言评论`页面会**审核不通过**，需要注释掉这个页面😭😭😭
 
 
 

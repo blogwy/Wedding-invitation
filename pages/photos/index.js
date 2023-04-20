@@ -31,6 +31,16 @@ Page({
     // 页面关闭
   },
   onShareAppMessage: function (res) {
-    
-  }
+    return {
+      title: '来吃喜糖',
+      path: '/pages/index/index',
+      imageUrl: ''
+    }
+  },
+  onShareTimeline: function () {
+    return {
+      title: '来吃喜糖',
+      imageUrl: ''
+    }
+  },
 })

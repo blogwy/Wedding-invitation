@@ -35,15 +35,6 @@ Page({
     this.setData({
       mainInfo: mainInfo.data[0]
     })
-      // .then(res => {
-      //   console.log(res)
-      //   this.setData({
-      //     slideList: res.data.map(item => item.image)
-      //   })
-      // })
-      // .catch(err => {
-      //   console.log(err)
-      // })
 
     //创建动画
     var animation = wx.createAnimation({
@@ -51,9 +42,8 @@ Page({
       timingFunction: "ease",
       delay: 600,
       transformOrigin: "50% 50%",
-
     })
-    animation.scale(0.9).translate(10, 10).step();     //边旋转边放大
+    animation.scale(0.9).translate(0, 0).step();     //边旋转边放大
 
     //导出动画数据传递给组件的animation属性。
     this.setData({
@@ -63,7 +53,8 @@ Page({
     // 播放背景音乐
     if (this.data.mainInfo.autoPlay) {
       wx.playBackgroundAudio({
-        dataUrl: this.data.mainInfo.music
+        dataUrl: this.data.mainInfo.music,
+        title: ''
       })
       this.setData({
         musicStatus: true
@@ -121,17 +112,29 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+    return {
+      title: '来吃喜糖',
+      path: '/pages/index/index',
+      imageUrl: ''
+    }
+  },
+  onShareTimeline: function () {
+    return {
+      title: '来吃喜糖',
+      imageUrl: ''
+    }
   },
   play: function (event) {
     if (this.data.musicStatus) {
       wx.pauseBackgroundAudio();
       this.setData({
-        musicStatus: false
+        musicStatus: false,
+        title: ''
       })
     } else {
       wx.playBackgroundAudio({
-        dataUrl: this.data.mainInfo.music
+        dataUrl: this.data.mainInfo.music,
+        title: ''
       })
       this.setData({
         musicStatus: true

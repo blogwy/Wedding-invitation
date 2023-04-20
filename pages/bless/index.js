@@ -166,6 +166,16 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function() {
-      
-    }
+      return {
+        title: '来吃喜糖',
+        path: '/pages/index/index',
+        imageUrl: ''
+      }
+    },
+    onShareTimeline: function () {
+      return {
+        title: '来吃喜糖',
+        imageUrl: ''
+      }
+    },
 })

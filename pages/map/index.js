@@ -19,8 +19,8 @@ Page({
       longitude: _this.data.mainInfo.longitude,
       scale: 18,
       // 酒店名字和位置
-      name: '',
-      address: ''
+      name: _this.data.mainInfo.hotel,
+      address: _this.data.mainInfo.address,
     })
   },
   /**
@@ -93,7 +93,17 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+    return {
+      title: '来吃喜糖',
+      path: '/pages/index/index',
+      imageUrl: ''
+    }
+  },
+  onShareTimeline: function () {
+    return {
+      title: '来吃喜糖',
+      imageUrl: ''
+    }
   },
   callhe: function (event) {
     wx.makePhoneCall({

@@ -18,7 +18,6 @@ Page({
   },
 
   onChooseAvatar(e) {
-    console.log(e);
     const { avatarUrl } = e.detail 
     this.setData({
       avatarUrl,
@@ -38,7 +37,15 @@ Page({
   },
 
   async submit() {
-    console.log(this.data.avatarUrl, this.data.nickName);
+    // 检查头像是否上传
+    if (this.data.avatarUrl.includes(defaultAvatarUrl)) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     wx.showLoading({
       title: '正在提交数据',
       mask: true
